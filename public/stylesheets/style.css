@@ -50,7 +50,7 @@ button.next-time {
   background-color: #01b3d3;
 }
 
-button.undo-nexttime, .readd-listitem {
+button.undo-nexttime, .readd-listitem, .undo-list {
   background-color: #eb0505;
 }
 
