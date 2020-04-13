@@ -36,15 +36,22 @@ router.get("/", function (req, res) {
 
 router.get("/edit", async function (req, res) {
   const hhID = 1; //dynamic later
+
   const listItems = await groceryController.allByHousehold(hhID);
-  //console.log(`LINE 40 LIST ITEMS: ${listItems}`);
-  
-  const items = await groceryController.allItems();
-  //console.log(`LINE 43 ALL ITEMS: ${items}`);
-    
+  const categories = await groceryController.allCategory();
+  // const selectedCat = $(".category-picker").val();
+  const selectedCat = 0; //make this dynamic, this shows all at once
+
+  let items = await groceryController.allItems();
+
+  if (selectedCat > 0) {
+    items = await groceryController.itemsByCategory(selectedCat);
+  }
+
   const hbsObject = {
     listItem: listItems,
-    Item: items
+    Item: items,
+    Category: categories
   };
 
   console.table(hbsObject);

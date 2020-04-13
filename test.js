@@ -40,7 +40,7 @@ const db = require("./models");
 //       console.table(things);
 //       return Promise.resolve();
 //     }).then(() => db.sequelize.close());
-// });
+// // });
 
 // db.sequelize.sync({ force: false }).then(function() {
 //   groceryController.gotIt(9)
@@ -82,10 +82,10 @@ const db = require("./models");
 //     }).then(() => db.sequelize.close());
 // });
 
-db.sequelize.sync({ force: false }).then(function() {
-  groceryController.addListItem(1, 9)
-    .then((things) => { 
-      console.table(things);
-      return Promise.resolve();
-    }).then(() => db.sequelize.close());
-});
+// db.sequelize.sync({ force: false }).then(function() {
+//   groceryController.addListItem(1, 9)
+//     .then((things) => { 
+//       console.table(things);
+//       return Promise.resolve();
+//     }).then(() => db.sequelize.close());
+// });

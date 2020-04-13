@@ -25,6 +25,13 @@ router.post("/api/allDone", function (req, res) {
   });
 });
 
+//remove item from list on edit screen
+router.post("/api/removeItem", function (req, res) {
+  groceryController.removeListItem(req.body.id).then(() => {
+    return res.status(200).end();
+  });
+});
+
 router.post("/api/unobtained", function (req, res) {
   console.log(`LIST ITEM ID: ${req.body.id}`);
   groceryController.gotItFlip(false, req.body.id).then(() => {
@@ -47,7 +54,7 @@ router.post("/api/makeIt", function (req, res) {
   });
 });
 
-router.get("/api/optionsList:id", function (req, res) {
+router.get("/api/optionsList", function (req, res) {
   console.log("here we are");
   let catID = 1;
   let catval = $(".categories").val();

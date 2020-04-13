@@ -4,8 +4,8 @@ $(document).ready(function() {
   $(document).on("click", "button.delete-listitem", handleItemObtained);
   $(document).on("click", "button.next-time", handleNextTime);
   $(document).on("click", "button.done-shop", handleDoneShop);
-  $(document).on("click", "button.readd-listitem", UndoItemObtained);
-  $(document).on("click", "button.undo-nexttime", UndoNextTime);
+  $(document).on("click", "button.readd-listitem", undoItemObtained);
+  $(document).on("click", "button.undo-nexttime", undoNextTime);
 
   //changes obtained to true for this item
   function handleItemObtained() {
@@ -33,7 +33,7 @@ $(document).ready(function() {
     });
   }
 
-  function UndoItemObtained() {
+  function undoItemObtained() {
     const thisItem = $(this).attr("data-id");
     console.log(`THIS ITEM: ${thisItem}`);
     $.ajax({
@@ -45,7 +45,7 @@ $(document).ready(function() {
     });
   }
 
-  function UndoNextTime() {
+  function undoNextTime() {
     const thisItem = $(this).attr("data-id");
     console.log(`THIS ITEM: ${thisItem}`);
     $.ajax({
