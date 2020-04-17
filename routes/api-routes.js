@@ -1,4 +1,5 @@
 const express = require("express");
+const exphand = require("express-handlebars");
 const router = express.Router();
 const groceryController = require("../controller/groceryController");
 
@@ -64,4 +65,11 @@ router.get("/api/optionsList", function (req, res) {
     return res.status(200).end();
   });
 });
+
+router.get("/api/getByCat/:id", function (req, res) {
+  groceryController.itemsByCategory(req.params.id).then((result) => {
+    res.render("partials/cat-items", { Item: result});
+  });
+});
+
 module.exports = router;

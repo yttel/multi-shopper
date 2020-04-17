@@ -3,20 +3,20 @@ $(document).ready(() => {
     location.href = "list";
   });
 
-  $(".categories").on("click", function () {
-    let catList = $(this).attr("value");
-    console.log(catList);
+  // $(".categories").on("change", function () {
+  //   let catList = $(this).attr("value");
+  //   console.log(catList);
 
-    $.ajax({
-      method: "GET",
-      url: "/api/optionsList",
-      data: { id: catList },
-    }).then(() => {
-      return location.reload();
-    });
-  });
+  //   $.ajax({
+  //     method: "GET",
+  //     url: "/api/optionsList",
+  //     data: { id: catList },
+  //   }).then(() => {
+  //     return location.reload();
+  //   });
+  // });
 
-  $(".addTo").on("click", function () {
+  $(document).on("click", ".addTo", function () {
     let chosenItem = $(this).attr("data-id");
 
     $.ajax({
@@ -29,7 +29,7 @@ $(document).ready(() => {
   });
   
   //event listeners
-  $(document).on("click", ".category-picker", byCategory);
+  $(document).on("change", ".category-picker", byCategory);
   $(document).on("click", "button.undo-list", undoList);
   $(document).on("click", "button.add-default", addDefault);
   $(document).on("click", "button.undo-default", undoDefault);
@@ -37,8 +37,19 @@ $(document).ready(() => {
 
   //grabs items from single category for display
   function byCategory() {
-    const thisCat = $(this).value();
+    const thisCat = $(this).val();
     console.log(`the category: ${thisCat}`);
+
+    $.ajax({
+      method: "GET",
+      url: `/api/getByCat/${thisCat}`,   
+    }).then((responseString) => {
+      console.log(responseString);
+
+      const parsedElement = $.parseHTML(responseString);
+
+      $(".catItemDisplay").empty().append(parsedElement);
+    });
   }
 
   //removes the item from the list
